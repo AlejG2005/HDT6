@@ -19,7 +19,7 @@ public class Coleccion {
             return false;
         } else {
             coleccion.add(pokemon);
-            System.out.println(pokemon.getNombre() + "ha sido añadido a tu colección. ¡Ve a por otro!");
+            System.out.println(pokemon.getNombre() + " ha sido añadido a tu colección. ¡Ve a por otro!");
             return true;
         }
     }

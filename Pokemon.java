@@ -59,6 +59,6 @@ public class Pokemon {
 
    @Override
     public String toString() {
-        return "Nombre: " + nombre + ", Tipo 1: " + tipo1 + ", Tipo 2: " + (tipo2.isEmpty() ? "Ninguno" : tipo2 + ", Clasificación: " + clasificacion + ", Altura [cm]: " + altura + ", Peso [kg]: " + peso + ", Habilidades: " + habilidades + "; Generación: " + generacion + ", ¿Legendario? " + legendario);
+        return "Nombre: " + nombre + ", Tipo 1: " + tipo1 + ", Tipo 2: " + (tipo2.isEmpty() ? "Ninguno" : tipo2 + ", Clasificación: " + clasificacion + ", Altura [m]: " + altura + ", Peso [kg]: " + peso + ", Habilidades: " + habilidades + "; Generación: " + generacion + ", ¿Legendario? " + legendario);
     }
 }

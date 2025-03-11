@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.*;
 public class LectorCSV {
    private String direccion = "pokemon_data_pokeapi.csv";
-   private Map<String, Pokemon> pokedex = New HashMap<>();
+   private Map<String, Pokemon> pokedex = new HashMap<>();
 
    public LectorCSV(){
     cargarDatos();
@@ -28,12 +28,12 @@ public class LectorCSV {
             String clasificacion = datos[4];
             String altura = datos[5];
             String peso = datos[6];
-            String abilidades = datos[7];
+            String habilidades = datos[7];
             String generacion = datos[8];
             String legendario = datos[9];
 
 
-            Pokemon pokemon = new Pokemon(nombre, numPokedex, tipo1, tipo2, clasificacion, altura, peso, abilidades, generacion, legendario);
+            Pokemon pokemon = new Pokemon(nombre, numPokedex, tipo1, tipo2, clasificacion, altura, peso, habilidades, generacion, legendario);
             pokedex.put(nombre.toLowerCase(), pokemon);
         }
     } catch (IOException e) {

@@ -67,6 +67,8 @@ private void cargarDatos() {
     }
 }
 
+//Método que recibe como parámetro el nombre de un pokémon y lo va a buscar en la base de datos. 
+
     public Pokemon buscarPokemon(String nombre){
         return pokedex.get(nombre.toLowerCase());
     }
@@ -84,4 +86,30 @@ Por tipo1 y recorrerla para imprimirlos.*/
             System.out.println(p.getNombre() + " -> " + p.getTipo1());
         }
     }
-}
+
+    /* Este método se encarga de recibir una habilidad escrita por usuario y compara qué pokémon la tienen recorriendo get.habilidades(). Los que coincidan los 
+    guarda en una lista. luego recorre la lista de resultados e imprime todos lo pokémon contenidos en ella. */
+
+    public void BuscarPorHabilidad(String habilidadCSV) {
+        List<Pokemon> listaPokemonCSV = new ArrayList<>(pokedex.values());
+        List<Pokemon> resultadoCSV = new ArrayList<>();
+
+    for (Pokemon p : listaPokemonCSV) {
+        for (String habilidad : p.getHabilidades()) {
+            if (habilidad.equalsIgnoreCase(habilidadCSV)) {
+                resultadoCSV.add(p);
+                break;
+            }
+        }
+    }
+
+    if (resultadoCSV.isEmpty()) {
+        System.out.println("No se encontraron Pokémon con la habilidad: " + habilidadCSV);
+    } else {
+        System.out.println("\nPokémon con la habilidad '" + habilidadCSV + "':\n");
+        for (Pokemon p : resultadoCSV) {
+            System.out.println(p+"\n");
+            }
+        }
+    }
+} 

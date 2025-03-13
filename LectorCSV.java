@@ -12,35 +12,61 @@ public class LectorCSV {
     this.pokedex = MapFactory.crearMapa(tipoMapa);
     cargarDatos();
    }
+
+/* Tenemos la siguiente función que se encarga de validar el cómo están colocadas las habilidades en el CSV. Puesto que
+* también están separadas por comas. Utiliza StringBuilder para poder modificar el String ya creado.
+*/
+
+    private List<String> parseCSVLine(String line) {
+    List<String> values = new ArrayList<>();
+    boolean dentroComillas = false;
+    StringBuilder campo = new StringBuilder();
+
+    for (char c : line.toCharArray()) {
+        if (c == '"') {
+            dentroComillas = !dentroComillas; // Cambiar estado
+        } else if (c == ',' && !dentroComillas) {
+            values.add(campo.toString().trim());
+            campo.setLength(0); // Resetear campo
+        } else {
+            campo.append(c);
+        }
+    }
+    values.add(campo.toString().trim()); // Agregar último valor
+    return values;
+
 /* Esta función se encarga de leer el archivo CSV con los datos de los pokemon, primero accede a la dirección proporcionada
  * y separa los datos cada que encuentra una coma. Luego los almacena en un map.
  */
-   private void cargarDatos() {
+
+}
+private void cargarDatos() {
     try (BufferedReader br = new BufferedReader(new FileReader(direccion))) {
         String linea;
-        br.readLine(); 
+        br.readLine(); // Saltar encabezado
 
         while ((linea = br.readLine()) != null) {
-            String[] datos = linea.split(",");
-            String nombre = datos[0];
-            String numPokedex = datos[1];
-            String tipo1 = datos[2];
-            String tipo2 = datos[3];
-            String clasificacion = datos[4];
-            String altura = datos[5];
-            String peso = datos[6];
-            String habilidades = datos[7];
-            String generacion = datos[8];
-            String legendario = datos[9];
+            List<String> datos = parseCSVLine(linea);
 
+            String nombre = datos.get(0);
+            int numeroPokedex = Integer.parseInt(datos.get(1));
+            String tipo1 = datos.get(2);
+            String tipo2 = datos.get(3);
+            String clasificacion = datos.get(4);
+            float altura = Float.parseFloat(datos.get(5));
+            float peso = Float.parseFloat(datos.get(6));
+            List<String> habilidades = Arrays.asList(datos.get(7).split(", "));
+            int generacion = Integer.parseInt(datos.get(8));
+            boolean esLegendario = Boolean.parseBoolean(datos.get(9));
 
-            Pokemon pokemon = new Pokemon(nombre, numPokedex, tipo1, tipo2, clasificacion, altura, peso, habilidades, generacion, legendario);
+            Pokemon pokemon = new Pokemon(nombre, numeroPokedex, tipo1, tipo2, clasificacion, altura, peso, habilidades, generacion, esLegendario);
             pokedex.put(nombre.toLowerCase(), pokemon);
         }
     } catch (IOException e) {
-        System.out.println("Error al leer el archivo CSV. Intente de nuevo." + e.getMessage());
+        System.out.println("Error al leer el archivo CSV: " + e.getMessage());
     }
 }
+
     public Pokemon buscarPokemon(String nombre){
         return pokedex.get(nombre.toLowerCase());
     }

@@ -1,18 +1,19 @@
+import java.util.*;
 // Clase pokemon que contiene todas las características del mismo
 public class Pokemon {
    private String nombre;
-   private String numPokedex;
+   private int numPokedex;
    private String tipo1;
    private String tipo2;
    private String clasificacion;
-   private String altura;
-   private String peso;
-   private String habilidades;
-   private String generacion;
-   private String legendario;
+   private float altura;
+   private float peso;
+   private List<String> habilidades;
+   private int generacion;
+   private boolean legendario;
 
 //Constructor del objeto pokemon
-   public Pokemon(String nombre, String numPokedex, String tipo1, String tipo2, String clasificacion, String altura, String peso, String habilidades, String generacion, String legendario) {
+   public Pokemon(String nombre, int numPokedex, String tipo1, String tipo2, String clasificacion, float altura, float peso, List<String> habilidades, int generacion, boolean legendario) {
     this.nombre = nombre;
     this.numPokedex = numPokedex;
     this.tipo1 = tipo1;
@@ -29,7 +30,7 @@ public class Pokemon {
    public String getNombre() {
     return nombre;
    }
-   public String getNumPokedex() {
+   public int getNumPokedex() {
     return numPokedex;
    }
    public String getTipo1() {
@@ -41,24 +42,24 @@ public class Pokemon {
    public String getClasificacion() {
     return clasificacion;
    }
-   public String getAltura() {
+   public float getAltura() {
     return altura;
    }
-   public String getPeso() {
+   public float getPeso() {
     return peso;
    }
-   public String getHabilidades() {
+   public List<String> getHabilidades() {
     return habilidades;
    }
-   public String getGeneracion() {
+   public int getGeneracion() {
     return generacion;
    }
-   public String getLegendario() {
+   public boolean getLegendario() {
     return legendario;
    }
 
    @Override
     public String toString() {
-        return "Nombre: " + nombre + ", Tipo 1: " + tipo1 + ", Tipo 2: " + (tipo2.isEmpty() ? "Ninguno" : tipo2 + ", Clasificación: " + clasificacion + ", Altura [m]: " + altura + ", Peso [kg]: " + peso + ", Habilidades: " + habilidades + "; Generación: " + generacion + ", ¿Legendario? " + legendario);
+        return "Nombre: " + nombre + ", Número en la Pokedex: " + numPokedex + ", Tipo 1: " + tipo1 + ", Tipo 2: " + (tipo2.isEmpty() ? "Ninguno" : tipo2) + ", Clasificación: " + clasificacion + ", Altura [m]: " + altura + ", Peso [kg]: " + peso + ", Habilidades: " + habilidades + ", Generación: " + generacion + ", ¿Legendario? " + legendario;
     }
 }

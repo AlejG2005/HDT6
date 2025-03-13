@@ -6,9 +6,10 @@ import java.io.*;
 import java.util.*;
 public class LectorCSV {
    private String direccion = "pokemon_data_pokeapi.csv";
-   private Map<String, Pokemon> pokedex = new HashMap<>();
+   private Map<String, Pokemon> pokedex;
 
-   public LectorCSV(){
+   public LectorCSV(int tipoMapa){
+    this.pokedex = MapFactory.crearMapa(tipoMapa);
     cargarDatos();
    }
 /* Esta función se encarga de leer el archivo CSV con los datos de los pokemon, primero accede a la dirección proporcionada
@@ -43,4 +44,5 @@ public class LectorCSV {
     public Pokemon buscarPokemon(String nombre){
         return pokedex.get(nombre.toLowerCase());
     }
+
 }

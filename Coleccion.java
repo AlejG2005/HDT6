@@ -1,5 +1,8 @@
 //Nos permitirá utilizar estructuras del tipo Set, que nos sirven ya que no permiten datos duplicados.
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /* Se refiere a la clase que representa la colección individual de pokémons de un jugador.
@@ -33,6 +36,23 @@ public class Coleccion {
             for (Pokemon pokemon : coleccion) {
                 System.out.println(pokemon);
             }
+        }
+    }
+
+//Método en el cuál recibimos el Map creado y lo convertimos en una lista, para así ser posible ordenarlos a gusto mediante la interfaz comparator.
+    public void mostrarOrdenadoPorTipo1() {
+        if (coleccion.isEmpty()) {
+            System.out.println("Tu colección está vacía. ¡Ve y añade unos pokémon!");
+            return;
+        }
+
+        List<Pokemon> listaPokemon = new ArrayList<>(coleccion);
+
+        listaPokemon.sort(Comparator.comparing(Pokemon::getTipo1));
+
+        System.out.println("Pokémon en tu colección ordenados por Tipo 1:");
+        for (Pokemon p : listaPokemon) {
+            System.out.println(p.getNombre() + " - " + p.getTipo1());
         }
     }
 }

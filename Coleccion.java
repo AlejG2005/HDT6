@@ -52,7 +52,7 @@ public class Coleccion {
 
         System.out.println("Pokémon en tu colección ordenados por Tipo 1:");
         for (Pokemon p : listaPokemon) {
-            System.out.println(p.getNombre() + " - " + p.getTipo1());
+            System.out.println(p.getNombre() + " -> " + p.getTipo1());
         }
     }
 }

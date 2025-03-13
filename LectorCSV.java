@@ -71,4 +71,17 @@ private void cargarDatos() {
         return pokedex.get(nombre.toLowerCase());
     }
 
+/* Aquí, similar a en la clase colección. Pasamos los valores del Map que contiene a los pokémon a una lista. Para así poder filtrarla
+Por tipo1 y recorrerla para imprimirlos.*/
+
+    public void TodosOrdenadoPorTipo1() {
+        List<Pokemon> listaPokemonCSV = new ArrayList<>(pokedex.values());
+
+        listaPokemonCSV.sort(Comparator.comparing(Pokemon::getTipo1));
+
+        System.out.println("Pokémon en tu colección ordenados por Tipo 1:");
+        for (Pokemon p : listaPokemonCSV) {
+            System.out.println(p.getNombre() + " -> " + p.getTipo1());
+        }
+    }
 }

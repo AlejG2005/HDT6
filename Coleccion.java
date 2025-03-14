@@ -18,11 +18,11 @@ public class Coleccion {
 //Método por el cuál el jugador añadirá pokémons con solo su nombre. Si este ya esta en la colección no permite añadirlo.
     public boolean agregarPokemon(Pokemon pokemon) {
         if (coleccion.contains(pokemon)) {
-            System.out.println("¡Quieres añadir un pokémon que ya tienes! ¿No quieres otro? ");
+            System.out.println("\n¡Quieres añadir un pokémon que ya tienes! ¿No quieres otro? ");
             return false;
         } else {
             coleccion.add(pokemon);
-            System.out.println(pokemon.getNombre() + " ha sido añadido a tu colección. ¡Ve a por otro!");
+            System.out.println("\n"+pokemon.getNombre() + " ha sido añadido a tu colección. ¡Ve a por otro!");
             return true;
         }
     }
@@ -30,9 +30,9 @@ public class Coleccion {
 //Método que recorre toda la colección diciendo los nombres de los pokémons que contiene.
     public void mostrarColeccion() {
         if (coleccion.isEmpty()) {
-            System.out.println("Tu colección está vacía, ¿por qué no vas a recolectar algún pokémon?");
+            System.out.println("\nTu colección está vacía, ¿por qué no vas a recolectar algún pokémon?");
         } else {
-            System.out.println("Aquí está tu colección de pokémons por el momento: ");
+            System.out.println("\nAquí está tu colección de pokémons por el momento: ");
             for (Pokemon pokemon : coleccion) {
                 System.out.println(pokemon);
             }
@@ -42,7 +42,7 @@ public class Coleccion {
 //Método en el cuál recibimos el Map creado y lo convertimos en una lista, para así ser posible ordenarlos a gusto mediante la interfaz comparator.
     public void mostrarOrdenadoPorTipo1() {
         if (coleccion.isEmpty()) {
-            System.out.println("Tu colección está vacía. ¡Ve y añade unos pokémon!");
+            System.out.println("\nTu colección está vacía. ¡Ve y añade unos pokémon!");
             return;
         }
 
@@ -50,9 +50,9 @@ public class Coleccion {
 
         listaPokemon.sort(Comparator.comparing(Pokemon::getTipo1));
 
-        System.out.println("Pokémon en tu colección ordenados por Tipo 1:");
+        System.out.println("\nPokémon en tu colección ordenados por Tipo 1:");
         for (Pokemon p : listaPokemon) {
-            System.out.println(p.getNombre() + " -> " + p.getTipo1());
+            System.out.println("\n"+p.getNombre() + " -> " + p.getTipo1());
         }
     }
 }

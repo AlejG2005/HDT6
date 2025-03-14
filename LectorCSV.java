@@ -13,11 +13,16 @@ public class LectorCSV {
     cargarDatos();
    }
 
+   public Map<String, Pokemon> getPokedex() {
+    return pokedex;
+}
+
+
 /* Tenemos la siguiente función que se encarga de validar el cómo están colocadas las habilidades en el CSV. Puesto que
 * también están separadas por comas. Utiliza StringBuilder para poder modificar el String ya creado.
 */
 
-    private List<String> parseCSVLine(String line) {
+    private List<String> parsearCSVLine(String line) {
     List<String> values = new ArrayList<>();
     boolean dentroComillas = false;
     StringBuilder campo = new StringBuilder();
@@ -46,7 +51,7 @@ private void cargarDatos() {
         br.readLine(); // Saltar encabezado
 
         while ((linea = br.readLine()) != null) {
-            List<String> datos = parseCSVLine(linea);
+            List<String> datos = parsearCSVLine(linea);
 
             String nombre = datos.get(0);
             int numeroPokedex = Integer.parseInt(datos.get(1));
@@ -57,13 +62,13 @@ private void cargarDatos() {
             float peso = Float.parseFloat(datos.get(6));
             List<String> habilidades = Arrays.asList(datos.get(7).split(", "));
             int generacion = Integer.parseInt(datos.get(8));
-            boolean esLegendario = Boolean.parseBoolean(datos.get(9));
+            boolean esLegendario = datos.get(9).equalsIgnoreCase("Yes"); 
 
             Pokemon pokemon = new Pokemon(nombre, numeroPokedex, tipo1, tipo2, clasificacion, altura, peso, habilidades, generacion, esLegendario);
             pokedex.put(nombre.toLowerCase(), pokemon);
         }
     } catch (IOException e) {
-        System.out.println("Error al leer el archivo CSV: " + e.getMessage());
+        System.out.println("\nError al leer el archivo CSV: " + e.getMessage());
     }
 }
 
@@ -81,9 +86,9 @@ Por tipo1 y recorrerla para imprimirlos.*/
 
         listaPokemonCSV.sort(Comparator.comparing(Pokemon::getTipo1));
 
-        System.out.println("Pokémon en tu colección ordenados por Tipo 1:");
+        System.out.println("\nPokémon en tu colección ordenados por Tipo 1:");
         for (Pokemon p : listaPokemonCSV) {
-            System.out.println(p.getNombre() + " -> " + p.getTipo1());
+            System.out.println("\n"+p.getNombre() + " -> " + p.getTipo1());
         }
     }
 
@@ -104,7 +109,7 @@ Por tipo1 y recorrerla para imprimirlos.*/
     }
 
     if (resultadoCSV.isEmpty()) {
-        System.out.println("No se encontraron Pokémon con la habilidad: " + habilidadCSV);
+        System.out.println("\nNo se encontraron Pokémon con la habilidad: " + habilidadCSV);
     } else {
         System.out.println("\nPokémon con la habilidad '" + habilidadCSV + "':\n");
         for (Pokemon p : resultadoCSV) {

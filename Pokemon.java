@@ -10,10 +10,10 @@ public class Pokemon {
    private float peso;
    private List<String> habilidades;
    private int generacion;
-   private boolean legendario;
+   private boolean esLegendario;
 
 //Constructor del objeto pokemon
-   public Pokemon(String nombre, int numPokedex, String tipo1, String tipo2, String clasificacion, float altura, float peso, List<String> habilidades, int generacion, boolean legendario) {
+   public Pokemon(String nombre, int numPokedex, String tipo1, String tipo2, String clasificacion, float altura, float peso, List<String> habilidades, int generacion, boolean esLegendario) {
     this.nombre = nombre;
     this.numPokedex = numPokedex;
     this.tipo1 = tipo1;
@@ -23,7 +23,7 @@ public class Pokemon {
     this.peso = peso;
     this.habilidades = habilidades;
     this.generacion = generacion;
-    this.legendario = legendario;
+    this.esLegendario = esLegendario;
    }
 
 //Getters
@@ -55,11 +55,12 @@ public class Pokemon {
     return generacion;
    }
    public boolean getLegendario() {
-    return legendario;
+    return esLegendario;
    }
 
    @Override
     public String toString() {
-        return "Nombre: " + nombre + ", Número en la Pokedex: " + numPokedex + ", Tipo 1: " + tipo1 + ", Tipo 2: " + (tipo2.isEmpty() ? "Ninguno" : tipo2) + ", Clasificación: " + clasificacion + ", Altura [m]: " + altura + ", Peso [kg]: " + peso + ", Habilidades: " + habilidades + ", Generación: " + generacion + ", ¿Legendario? " + legendario;
+        System.out.println("\n");
+        return "Nombre: " + nombre + ", Número en la Pokedex: " + numPokedex + ", Tipo 1: " + tipo1 + ", Tipo 2: " + (tipo2.isEmpty() ? "Ninguno" : tipo2) + ", Clasificación: " + clasificacion + ", Altura [m]: " + altura + ", Peso [kg]: " + peso + ", Habilidades: " + habilidades + ", Generación: " + generacion + ", ¿Legendario? " + esLegendario;
     }
 }
